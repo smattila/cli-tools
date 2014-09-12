@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Show current PostgreSQL locks for given database
+# PostgreSQL: show current locks for given database
 #
 # smattila, 2013
 

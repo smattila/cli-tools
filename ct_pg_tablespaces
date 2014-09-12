@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Display all PostgreSQL databases with tablespaces with psql -l like formatting. Also displays the pg_default tablespace location
+# PostgreSQL: display all databases with tablespaces using psql -l like formatting. Also display the pg_default tablespace location
 #
 # smattila, 2012
 

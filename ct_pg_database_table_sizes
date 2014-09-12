@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Show PostgreSQL databases with database size
+# PostgreSQL: show databases with database size
 # 
 # smattila, 2012
 
