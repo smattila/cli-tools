@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Show current PostgreSQL locks for given database
+#
+# smattila, 2013
+
+if [ "X" == "$1X" ]; then
+  echo ""
+  echo "Usage: ./$0 database-name"
+  echo ""
+  exit 1
+fi
+
+sql_query="select pid, schemaname, relname, mode, query_start,waiting, substring(current_query for 80) as current_query from pg_locks join pg_stat_user_tables on relation = relid left join pg_stat_activity on procpid = pid order by relname;"
+
+echo ""
+echo "PostgreSQL :: Locks for $1"
+psql $1 -c "$sql_query"
+echo ""

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# PostgreSQL: show current long lasting queries
+#
+# smattila, 2012
+
+max_query_time_threshold=${1:-30} # default threshold is 30 minutes
+sql_query="select datname,procpid,query_start,waiting,current_query as query from pg_stat_activity where current_query <> '<IDLE>' and current_query NOT LIKE '%COPY%' and current_timestamp-query_start>'$max_query_time_threshold minutes' order by query_start;"
+
+echo ""
+echo "PostgreSQL :: Long lasting queries (>$max_query_time_threshold minutes)"
+psql postgres -c "$sql_query"
+echo ""

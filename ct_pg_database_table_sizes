@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Show PostgreSQL databases with database size
+# 
+# smattila, 2012
+
+if [ "$1" == "" ] ; then
+  echo "Insufficient arguments, usage: ./$0 database"
+else
+  echo ""
+  echo "PostgreSQL :: database table sizes for $1"
+  sql_query="select relname,relkind, pg_size_pretty( pg_total_relation_size( oid ) ) as size from pg_class where relname not like 'pg_%' and relkind='r' order by pg_total_relation_size( oid ) desc;"
+  psql $1 -c "$sql_query"
+  echo ""
+fi

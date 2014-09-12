@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Show PostgreSQL database table sizes
+# 
+# smattila, 2012
+
+echo ""
+echo "PostgreSQL :: database sizes"
+sql_query="SELECT pg_database.datname, pg_size_pretty(pg_database_size(pg_database.datname)) AS size FROM pg_database ORDER BY size ASC;"
+psql postgres -c "$sql_query"
+echo ""

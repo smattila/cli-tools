@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# PostgreSQL: show last vacuum and analyze date for database $1 and table $2
+#
+# smattila, 2012
+
+if [[ "$1" == "" && "$2" == "" ]] ; then
+	echo "Insufficient arguments, usage: ./$0 database tablename"
+else
+  sql_query="select * from pg_stat_user_tables where relname='$2';"
+  echo ""
+  echo "PostgreSQL :: Last vacuum for database $1, table $2"
+  psql $1 -c "$sql_query"
+  echo ""
+fi 
